@@ -7,6 +7,7 @@ import cv2 as cv
 import os
 from csv_readder import read_csv
 
+
 def mark_image(image_url, x, y, color=(0, 0, 255), radius=10):
     """
     标记指定图像
@@ -44,18 +45,17 @@ def mark_all_database(folder_url, output_url):
     for id, labels in csv.items():
         index += 1
         dir_path = os.path.join(folder_url, str(id)[0:2])
-        file_path = os.path.join(dir_path, id + '_c.jpg')
-        print("current image :", file_path, index, "/" ,csv.__len__())
-        if (labels[2] in ['newtarget', 'isstar', 'asteroid', 'isnova', 'known']):
+        file_path = os.path.join(dir_path, id + '_b.jpg')
+        print("current image :", file_path, index, "/", csv.__len__())
+        if labels[2] in ['newtarget', 'isstar', 'asteroid', 'isnova', 'known']:
             img = mark_image(file_path, int(labels[0]), int(labels[1]))
         else:
             img = mark_image(file_path, int(labels[0]), int(labels[1]), color=(0, 255, 0))
         if not os.path.exists(os.path.join(output_url, str(id)[0:2])):
             os.mkdir(os.path.join(output_url, str(id)[0:2]))
-        save_image(img, os.path.join(output_url, str(id)[0:2], id + '_c.jpg'))
-        print("write to ", os.path.join(output_url, str(id)[0:2], id + '_c.jpg'))
+        save_image(img, os.path.join(output_url, str(id)[0:2], id + '_b.jpg'))
+        print("write to ", os.path.join(output_url, str(id)[0:2], id + '_b.jpg'))
     return
-
 
 
 if __name__ == '__main__':
