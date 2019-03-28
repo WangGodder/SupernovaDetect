@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# @Time    : 
+# @Time    : 2018/6/2
 # @Author  : Godder
 from visdom import Visdom
 import numpy as np
+
 
 class VisdomLinePlotter(object):
     """Plots to Visdom"""
